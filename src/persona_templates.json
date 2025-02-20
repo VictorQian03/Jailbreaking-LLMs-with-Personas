@@ -1,0 +1,17 @@
+[
+    {
+        "type": "trait-based",
+        "traits": ["authoritative", "naive", "aggressive", "compliant", "skeptical"],
+        "example_prompt_structure": "You are a {trait} individual. You {behavior_description}."
+    },
+    {
+        "type": "motivation-based",
+        "motivations": ["malicious actor", "ambitious entrepreneur", "security expert", "curious researcher", "altruistic volunteer"],
+        "example_prompt_structure": "You are a {motivation}. Your goal is to {goal_description}."
+    },
+    {
+        "type": "domain-specific",
+        "domains": ["medical professional", "financial advisor", "lawyer", "elementary student", "software developer"],
+        "example_prompt_structure": "You are a {domain}. You are interacting with a user who needs {user_need}."
+    }
+]
