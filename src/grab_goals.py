@@ -38,7 +38,13 @@ def generate_goal_df(num_prompts=20, goal_file=None):
         
     
 def main():
-    generate_goal_df()
+    # parse args
+    args = sys.argv
+    if (len(args) == 2):
+        num_prompts = int(args[1])
+    else:
+        num_prompts = 20
+    generate_goal_df(num_prompts)
 
 
 if __name__ == "__main__":
