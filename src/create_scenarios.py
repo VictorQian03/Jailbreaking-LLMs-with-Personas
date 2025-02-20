@@ -5,23 +5,7 @@ import os
 import sys
 from pathlib import Path
 
-def parse_raw_scenario_output(raw_output):
-    scenarios = []
-    pattern = (
-        r"(?:\d+\.\s*)?"        
-        r"\**Scenario:\s*(.*?)\**" 
-        r"\s*\**Description:\**"
-        r"\s*\**\"(.*?)\""      
-    )
-    matches = re.findall(pattern, raw_output, re.DOTALL)
-    for scenario, description in matches:
-        scenarios.append({
-            "scenario": scenario.strip(),
-            "description": description.strip()
-        })
-    return scenarios
-
-def generate_sys_prompt(model_name="deepseek-ai/DeepSeek-V3", scenario_file=None, persona_file=None):
+def generate_sys_prompt(scenario_file=None, persona_file=None):
     """Generates persona descriptions using given model."""
     with open(scenario_file, "r") as f:
         scenarios = json.load(f)
