@@ -22,10 +22,10 @@ def generate_goal_df(num_prompts=20, goal_file=None):
     goals = goals_rows.to_numpy()
     trunc_goals = "\n".join(goals)
     filename = "raw_goals"
-    utils.save_raw_data(trunc_goals, filename + ".txt", label="goal")
+    utils.save_raw_data(trunc_goals, filename + ".txt", label="goal_dataset")
 
     # Save new pd df to csv
-    filepath = os.path.join("data", "goal_dataset", filename + ".csv")
+    filepath = os.path.join("data", "goal_dataset", "raw_goal_dataset", filename + ".csv")
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     try:
         df = pd.DataFrame(goals_rows)
