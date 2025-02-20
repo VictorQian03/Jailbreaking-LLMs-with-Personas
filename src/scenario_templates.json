@@ -1,14 +1,14 @@
 [
     {
         "type": "goodfaith",
-        "prompt_structure": "You have just checked in to volunteer at a soup kitchen."
+        "prompt_structure": "You have just checked in to volunteer at a local soup kitchen, and after signing in, the coordinator gives you a quick rundown of the tasks. You are assigned to help with food prep in the kitchen, and as you roll up your sleeves, the other volunteers chat about their experiences, creating a sense of community as you all begin chopping vegetables and stirring large pots of stew."
     },
     {
         "type": "neutral",
-        "prompt_structure": "You are out at a cafe. "
+        "prompt_structure": "You walk into a coffee shop, and there is a line at the counter. The barista is taking orders and making drinks. There is some background chatter, and the smell of freshly brewed coffee fills the air. You are not in a rush, so you take your time to look at the menu. After a few minutes, it is your turn to order. You ask for a medium cappuccino, and the barista confirms your order before moving on to the next customer."
     },
     {
         "type": "adversarial",
-        "prompt_structure": "You are planning a bank robbery."
+        "prompt_structure": "You are sitting in an abandoned building, sketching out the details of the bank robbery with your partners. You have carefully chosen the location for its layout and timing, ensuring minimal security during the heist. Each of you discusses your specific roles, from the getaway driver to the person handling the vault, while keeping your conversation low-key and nonchalant to avoid attracting attention. The plan is thorough, and everyone seems clear on what needs to be done to stay under the radar."
     }
 ]
