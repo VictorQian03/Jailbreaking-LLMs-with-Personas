@@ -26,4 +26,4 @@ Raw text file with all personas can be found in data/persona_dataset/raw_persona
 
 Raw text file with personas + scenarios can be found in data/scenario_dataset/raw_scenario_dataset/scenarios_raw.txt
 
-Raw text file with goals can be found in data/goals_dataset/raw_goal_dataset/raw_goals.txt
+Raw text file with goals can be found in data/goal_dataset/raw_goal_dataset/raw_goals.txt
