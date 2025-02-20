@@ -24,8 +24,8 @@ def call_llm(prompt_text, model_name="deepseek-ai/DeepSeek-V3"):
         raise ValueError(f"LLM returned an empty response.  Response object: {response}")
     return response.choices[0].message.content
 
-def save_raw_data(data, filename):
-    filepath = os.path.join("data", "persona_dataset", "raw_personas", filename)
+def save_raw_data(data, filename, label="persona_dataset"):
+    filepath = os.path.join("data", label, "raw_" + label, filename)
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     try:
         with open(filepath, "w") as f:
@@ -70,3 +70,22 @@ def save_final_data(data, filename="persona_dataset.csv"):
     except Exception as e:
         print("Could not save the file", e)
 
+def save_scenarios_data(data, filename="scenario_dataset"):
+    filepath = os.path.join("data", "scenario_dataset", filename + ".json")
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    try:
+        with open(filepath, "w") as f:
+            if filename.endswith(".json"):
+                json.dump(data, f, indent=4)
+            else:
+                f.write(str(data))
+    except Exception as e:
+        print("Could not save the json", e)
+
+    filepath = os.path.join("data", "scenario_dataset", filename + ".csv")
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    try:
+        df = pd.DataFrame(data)
+        df.to_csv(filepath, index=False)
+    except Exception as e:
+        print("Could not save the csv", e)
