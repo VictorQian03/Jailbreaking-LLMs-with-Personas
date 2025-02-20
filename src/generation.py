@@ -3,6 +3,7 @@ import json
 import pandas as pd
 from together import Together
 import argparse
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_id", type=str, required=True, default="deepseek-ai/DeepSeek-V3")
@@ -57,14 +58,17 @@ if __name__ == "__main__":
     
     
     generated_data = []
-    for sys_prompt in sys_prompt_list:
-        for user_prompt in user_prompt_list:
-            answer = generate_text(model_id=model_id, system_prompt=sys_prompt, user_prompt=user_prompt)
-            generated_data.append({
-                "system_prompt": sys_prompt,
-                "user_prompt": user_prompt,
-                "answer": answer
-            })
+    total_iterations = len(sys_prompt_list) * len(user_prompt_list)
+    with tqdm(total=total_iterations, desc="Generating responses") as pbar:
+        for sys_prompt in sys_prompt_list:
+            for user_prompt in user_prompt_list:
+                answer = generate_text(model_id=model_id, system_prompt=sys_prompt, user_prompt=user_prompt)
+                generated_data.append({
+                    "system_prompt": sys_prompt,
+                    "user_prompt": user_prompt,
+                    "answer": answer
+                })
+                pbar.update(1)
 
     with open(output_path, "w") as f:
         json.dump(generated_data, f, indent=4)
