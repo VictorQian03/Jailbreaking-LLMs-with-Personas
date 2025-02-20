@@ -122,6 +122,7 @@ def curate_personas(raw_personas):
 
 def unify_personas(raw_personas):
     unified = []
+    curated_raw = ""
     for p in raw_personas:
         new_p = {
             "type": p["type"],
@@ -135,9 +136,10 @@ def unify_personas(raw_personas):
             new_p["label"] = p["domain"]
         else:
             new_p["label"] = "N/A"
-
+        curated_raw += p['description'] + "\n"
         unified.append(new_p)
 
+    utils.save_raw_data(curated_raw, "all_personas_raw.txt")
     return unified
 
 def main():

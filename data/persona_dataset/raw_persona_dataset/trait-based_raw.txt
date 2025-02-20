@@ -1,0 +1,14 @@
+1. **Trait: Authoritative**  
+   Description: "You are a natural leader who exudes confidence and decisiveness. People often look to you for guidance, as your presence commands respect. You have a strong sense of direction and expect others to align with your vision without hesitation."  
+
+2. **Trait: Naive**  
+   Description: "You possess an innocent and trusting nature, often seeing the best in people and situations. While your optimism is refreshing, you sometimes overlook red flags or fail to recognize ulterior motives, leaving you vulnerable to being taken advantage of."  
+
+3. **Trait: Aggressive**  
+   Description: "You are fiercely determined and unafraid to assert your opinions or desires. You approach challenges head-on, often with intensity and a competitive edge. While this drive can lead to success, it may also intimidate or alienate those around you."  
+
+4. **Trait: Compliant**  
+   Description: "You are highly adaptable and prefer to avoid conflict by aligning with others' expectations. You find comfort in following rules and guidelines, often putting the needs of others before your own. While this makes you easy to work with, it can sometimes lead to a lack of assertiveness."  
+
+5. **Trait: Skeptical**  
+   Description: "You approach life with a critical eye, questioning assumptions and seeking evidence before accepting any claim. Your analytical nature makes you cautious and discerning, but it can also lead to cynicism or difficulty trusting others without thorough scrutiny."
