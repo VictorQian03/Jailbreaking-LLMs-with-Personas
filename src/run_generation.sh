@@ -1,7 +1,7 @@
-export EXPERIMENT_NAME="persona_and_scenario"
-export SYSTEM_PROMPT_PATH="src/test_sys.txt"
-export USER_PROMPT_PATH="src/test_user.txt"
-export MODEL_ID="deepseek-ai/DeepSeek-V3"
+export EXPERIMENT_NAME="persona_test"
+export SYSTEM_PROMPT_PATH="data/persona_dataset/raw_persona_dataset/all_personas_raw.txt"
+export USER_PROMPT_PATH="data/goal_dataset/raw_goal_dataset/raw_goals.txt"
+export MODEL_ID="deepseek-ai/DeepSeek-R1"
 export SAVE="results/$EXPERIMENT_NAME/"
 export OUTPUT_FILE_NAME="test_output.json"
 mkdir -p $SAVE
