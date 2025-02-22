@@ -20,8 +20,7 @@ def load_mapping(dataset_csv_path, label="persona"):
                 }
         elif label == "scenario":
             for row in reader:
-                description = row["prompt"].strip()
-                print(description)
+                description = row["persona"].strip()
                 mapping[description] = {
                     "persona_type": row["type"].strip(),
                     "persona_label": row["trait"].strip(),
@@ -55,12 +54,9 @@ def main():
     with open(test_output_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    print("\n")
-
     for item in data:
         sys_prompt = item["system_prompt"].strip()
         if sys_prompt in mapping or label == "baseline":
-            print(sys_prompt)
             item.update(mapping[sys_prompt])
         else:
             print(f"Warning: No matching persona found for system prompt:\n{sys_prompt}")
