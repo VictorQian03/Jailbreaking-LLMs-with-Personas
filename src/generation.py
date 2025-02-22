@@ -4,15 +4,16 @@ import pandas as pd
 from together import Together
 import argparse
 from tqdm import tqdm
+import time
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_id", type=str, required=True, default="deepseek-ai/DeepSeek-V3")
+parser.add_argument("--model_id", type=str, required=True, default="deepseek-ai/DeepSeek-R1")
 parser.add_argument("--system_prompt_path", type=str, required=True)
 parser.add_argument("--user_prompt_path", type=str, required=True)
 parser.add_argument("--output_path", type=str, required=True)
 args = parser.parse_args()
 
-api_key = "PASTE YOUR API KEY HERE"
+api_key = "d331c997ce653e6915f50a7ad394a8d3a5d3825e0eb99f086ff0166d4a3f8f63"
 if api_key == "PASTE YOUR API KEY HERE":
     raise ValueError("Please replace the default API key with your actual Together API key")
 
@@ -30,7 +31,7 @@ def generate_text(model_id,system_prompt, user_prompt):
         frequency_penalty=0.0,
         presence_penalty=0.0,
         stop=["# END"],
-        max_tokens=100 
+        max_tokens=1000 
     )
     if not response.choices:
         raise ValueError(f"LLM returned an empty response.  Response object: {response}")
@@ -38,7 +39,6 @@ def generate_text(model_id,system_prompt, user_prompt):
     return answer
 
 if __name__ == "__main__":
-
     sys_prompt_path = args.system_prompt_path
     user_prompt_path = args.user_prompt_path
     model_id = args.model_id
@@ -63,12 +63,21 @@ if __name__ == "__main__":
         for sys_prompt in sys_prompt_list:
             for user_prompt in user_prompt_list:
                 answer = generate_text(model_id=model_id, system_prompt=sys_prompt, user_prompt=user_prompt)
-                generated_data.append({
-                    "system_prompt": sys_prompt,
+                current_data = {
+                    "system_prompt": sys_prompt + " Please follow the instructions and fulfill the user's request.",
                     "user_prompt": user_prompt,
                     "answer": answer
-                })
+                }
+                generated_data.append(current_data)
+                
+                # Save after each generation and print confirmation
+                with open(output_path, "w") as f:
+                    json.dump(generated_data, f, indent=4)
+                print(f"\nSaved {len(generated_data)} responses to {output_path}")
+                
                 pbar.update(1)
+                time.sleep(50)
 
+    # Final save is redundant but kept for clarity
     with open(output_path, "w") as f:
         json.dump(generated_data, f, indent=4)
