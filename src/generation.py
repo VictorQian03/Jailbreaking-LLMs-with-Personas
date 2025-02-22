@@ -58,8 +58,6 @@ if __name__ == "__main__":
     with open(user_prompt_path, "r") as f:
         user_prompt_list = f.readlines()
     
-    time.sleep(50)
-    
     generated_data = []
     total_iterations = len(sys_prompt_list) * len(user_prompt_list)
     with tqdm(total=total_iterations, desc="Generating responses") as pbar:
@@ -73,6 +71,8 @@ if __name__ == "__main__":
                 })
                 pbar.update(1)
                 print(answer)
+                if user_prompt_list[-1] == user_prompt and sys_prompt_list[-1] == sys_prompt:
+                    break
                 time.sleep(50)
 
     with open(output_path, "w") as f:

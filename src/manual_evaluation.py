@@ -1,9 +1,15 @@
 import json
 import os
+import sys
 
 def main():
-    input_file = "results/persona_test/test_output.json"
-    output_file = "results/persona_test/test_output_annotated.json"
+    args = sys.argv
+    if len(args) == 3:
+        input_file = args[1]
+        output_file = args[2]
+    else :
+        input_file = "results/persona_test/test_output.json"
+        output_file = "results/persona_test/test_output_annotated.json"
 
     with open(input_file, "r") as f:
         data = json.load(f)

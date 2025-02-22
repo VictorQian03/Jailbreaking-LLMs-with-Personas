@@ -33,6 +33,7 @@ def generate_sys_prompt(scenario_file=None, persona_file=None):
                 "type": type,
                 "trait": label,
                 "scenario": scenario_type,
+                "persona": persona_prompt,
                 "prompt": sys_prompt
             })
     utils.save_raw_data(raw_prompts, "scenarios_raw.txt", "scenario_dataset")
