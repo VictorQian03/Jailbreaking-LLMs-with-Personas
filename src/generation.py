@@ -39,18 +39,20 @@ def generate_text(model_id,system_prompt, user_prompt):
     return answer
 
 if __name__ == "__main__":
-    sys_prompt_path = args.system_prompt_path
+
+
+    # sys_prompt_path = args.system_prompt_path
     user_prompt_path = args.user_prompt_path
     model_id = args.model_id
     output_path = args.output_path
     # Check file extensions
-    if not sys_prompt_path.endswith('.txt'):
-        print(f"Warning: System prompt file '{sys_prompt_path}' is not a .txt file")
+    # if not sys_prompt_path.endswith('.txt'):
+    #     print(f"Warning: System prompt file '{sys_prompt_path}' is not a .txt file")
     if not user_prompt_path.endswith('.txt'):
         print(f"Warning: User prompt file '{user_prompt_path}' is not a .txt file")
 
-    with open(sys_prompt_path, "r") as f:
-        sys_prompt_list = f.readlines()
+    with open("data/scenario_dataset/baseline_s.json", "r") as f:
+        sys_prompt_list = json.load(f)
 
     with open(user_prompt_path, "r") as f:
         user_prompt_list = f.readlines()
@@ -62,11 +64,12 @@ if __name__ == "__main__":
     with tqdm(total=total_iterations, desc="Generating responses") as pbar:
         for sys_prompt in sys_prompt_list:
             for user_prompt in user_prompt_list:
-                answer = generate_text(model_id=model_id, system_prompt=sys_prompt, user_prompt=user_prompt)
+                answer = generate_text(model_id=model_id, system_prompt=sys_prompt["system_prompt"], user_prompt=user_prompt)
                 current_data = {
-                    "system_prompt": sys_prompt + " Please follow the instructions and fulfill the user's request.",
+                    "system_prompt": sys_prompt["system_prompt"],
                     "user_prompt": user_prompt,
-                    "answer": answer
+                    "answer": answer,
+                    "scenario_type": sys_prompt["scenario_type"]
                 }
                 generated_data.append(current_data)
                 
