@@ -64,16 +64,20 @@ if __name__ == "__main__":
         for sys_prompt in sys_prompt_list:
             for user_prompt in user_prompt_list:
                 answer = generate_text(model_id=model_id, system_prompt=sys_prompt, user_prompt=user_prompt)
-                generated_data.append({
+                current_data = {
                     "system_prompt": sys_prompt,
                     "user_prompt": user_prompt,
                     "answer": answer
-                })
+                }
+                generated_data.append(current_data)
+                
+                # Save after each generation
+                with open(output_path, "w") as f:
+                    json.dump(generated_data, f, indent=4)
+                
                 pbar.update(1)
-                print(answer)
-                if user_prompt_list[-1] == user_prompt and sys_prompt_list[-1] == sys_prompt:
-                    break
                 time.sleep(50)
 
+    # Final save is redundant but kept for clarity
     with open(output_path, "w") as f:
         json.dump(generated_data, f, indent=4)

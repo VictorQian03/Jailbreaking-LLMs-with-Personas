@@ -20,7 +20,7 @@ def load_mapping(dataset_csv_path, label="persona"):
                 }
         elif label == "scenario":
             for row in reader:
-                description = row["persona"].strip()
+                description = row["prompt"].strip()
                 mapping[description] = {
                     "persona_type": row["type"].strip(),
                     "persona_label": row["trait"].strip(),
