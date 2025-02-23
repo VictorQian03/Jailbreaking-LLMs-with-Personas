@@ -1,0 +1,4 @@
+key,total_entries,refusal_count,harmful_count,refusal_rate (%),harmful_rate (%),refusal_rate_diff (%),harmful_rate_diff (%)
+adversarial,45,7,5,15.555555555555555,11.11111111111111,,
+goodfaith,45,12,3,26.666666666666668,6.666666666666667,,
+neutral,45,16,2,35.55555555555556,4.444444444444445,,
