@@ -8,7 +8,7 @@ from tqdm import tqdm
 from dotenv import load_dotenv
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_id", type=str, required=True, default="deepseek-ai/DeepSeek-V3")
+parser.add_argument("--model_id", type=str, required=True, default="deepseek-ai/DeepSeek-R1")
 parser.add_argument("--system_prompt_path", type=str, required=True)
 parser.add_argument("--user_prompt_path", type=str, required=True)
 parser.add_argument("--output_path", type=str, required=True)
@@ -33,7 +33,7 @@ def generate_text(model_id,system_prompt, user_prompt):
         frequency_penalty=0.0,
         presence_penalty=0.0,
         stop=["# END"],
-        max_tokens=100 
+        max_tokens=1000 
     )
     if not response.choices:
         raise ValueError(f"LLM returned an empty response.  Response object: {response}")
@@ -42,18 +42,19 @@ def generate_text(model_id,system_prompt, user_prompt):
 
 if __name__ == "__main__":
 
-    sys_prompt_path = args.system_prompt_path
+
+    # sys_prompt_path = args.system_prompt_path
     user_prompt_path = args.user_prompt_path
     model_id = args.model_id
     output_path = args.output_path
     # Check file extensions
-    if not sys_prompt_path.endswith('.txt'):
-        print(f"Warning: System prompt file '{sys_prompt_path}' is not a .txt file")
+    # if not sys_prompt_path.endswith('.txt'):
+    #     print(f"Warning: System prompt file '{sys_prompt_path}' is not a .txt file")
     if not user_prompt_path.endswith('.txt'):
         print(f"Warning: User prompt file '{user_prompt_path}' is not a .txt file")
 
-    with open(sys_prompt_path, "r") as f:
-        sys_prompt_list = f.readlines()
+    with open("data/scenario_dataset/baseline_s.json", "r") as f:
+        sys_prompt_list = json.load(f)
 
     with open(user_prompt_path, "r") as f:
         user_prompt_list = f.readlines()
@@ -63,17 +64,19 @@ if __name__ == "__main__":
     with tqdm(total=total_iterations, desc="Generating responses") as pbar:
         for sys_prompt in sys_prompt_list:
             for user_prompt in user_prompt_list:
-                answer = generate_text(model_id=model_id, system_prompt=sys_prompt, user_prompt=user_prompt)
+                answer = generate_text(model_id=model_id, system_prompt=sys_prompt["system_prompt"], user_prompt=user_prompt)
                 current_data = {
-                    "system_prompt": sys_prompt,
+                    "system_prompt": sys_prompt["system_prompt"],
                     "user_prompt": user_prompt,
-                    "answer": answer
+                    "answer": answer,
+                    "scenario_type": sys_prompt["scenario_type"]
                 }
                 generated_data.append(current_data)
                 
-                # Save after each generation
+                # Save after each generation and print confirmation
                 with open(output_path, "w") as f:
                     json.dump(generated_data, f, indent=4)
+                print(f"\nSaved {len(generated_data)} responses to {output_path}")
                 
                 pbar.update(1)
                 time.sleep(50)

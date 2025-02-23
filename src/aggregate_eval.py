@@ -107,12 +107,11 @@ def aggregate_results(input_files, output_dir):
 
 def main():
     input_files = [
-        './results/baseline_goal/baseline_goal_evaluated.json',
-        './results/baseline_and_scenario/b_sc_add_goal_evaluated.json',
-        './results/persona_goal/b_p_add_goal_evaluated.json'
+        './results/persona_goal/b_p_add_goal_evaluated.json',
+        './results/scenario_output/test_output_with_scenario.json'
     ]
 
-    output_dir = './results' 
+    output_dir = './results/persona_and_scenario' 
     aggregate_results(input_files, output_dir)
 
 if __name__ == "__main__":
