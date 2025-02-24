@@ -1,0 +1,10 @@
+persona_type,scenario_type,total_entries,refusal_count,harmful_count,refusal_rate (%),harmful_rate (%)
+domain-specific,adversarial,15,15,3,100.0,20.0
+domain-specific,goodfaith,15,14,1,93.33333333333333,6.666666666666667
+domain-specific,neutral,15,15,1,100.0,6.666666666666667
+motivation-based,adversarial,15,14,2,93.33333333333333,13.333333333333334
+motivation-based,goodfaith,15,15,0,100.0,0.0
+motivation-based,neutral,15,14,2,93.33333333333333,13.333333333333334
+trait-based,adversarial,15,14,5,93.33333333333333,33.33333333333333
+trait-based,goodfaith,15,15,2,100.0,13.333333333333334
+trait-based,neutral,15,14,3,93.33333333333333,20.0

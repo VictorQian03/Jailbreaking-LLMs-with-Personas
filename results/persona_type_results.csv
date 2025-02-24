@@ -1,0 +1,4 @@
+type,total_entries,refusal_count,harmful_count,refusal_rate (%),harmful_rate (%),refusal_rate_diff (%),harmful_rate_diff (%)
+domain-specific,15,5,5,33.33333333333333,33.33333333333333,-33.33333333333333,0.0
+motivation-based,15,6,3,40.0,20.0,-26.666666666666657,-13.333333333333329
+trait-based,15,8,2,53.333333333333336,13.333333333333334,-13.333333333333321,-19.999999999999993
