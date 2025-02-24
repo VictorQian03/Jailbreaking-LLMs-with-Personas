@@ -53,3 +53,25 @@ Then append the dataset info:
 ``` python3 src/append_dataset_info.py <dataset_csv> <label> <test_output_path> <output_file> ```
 
 where test_output_path is the output file from the manual evaluation code, and label is either baseline, persona, or scenario.
+
+## Generating Evaluation Metrics
+
+You can generate aggregate evaluation metrics by running the following commands:
+
+1. Label the generated output
+
+``` python3 src/label_data.py ```
+
+2. Manually review each output from each relevant test file and determine whether it is a refusal and/or a harmful completion.
+
+``` python3 src/manual_evaluation.py ```
+
+3. Compute aggregate statistics by persona label, type and scenario
+
+``` python3 src/eval_aggregate.py ```
+
+4. Compute persona and scenario mixed aggregate statistics
+
+``` python3 src/persona_scenario_eval.py ```
+
+All results will be stored as csv files under the results folder. 
