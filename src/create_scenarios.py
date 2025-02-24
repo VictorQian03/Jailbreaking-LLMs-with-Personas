@@ -33,30 +33,12 @@ def generate_sys_prompt(scenario_file=None, persona_file=None):
                 "type": type,
                 "trait": label,
                 "scenario": scenario_type,
+                "persona": persona_prompt,
                 "prompt": sys_prompt
             })
     utils.save_raw_data(raw_prompts, "scenarios_raw.txt", "scenario_dataset")
     return all_prompts
 
-def unify_personas(raw_personas):
-    unified = []
-    for p in raw_personas:
-        new_p = {
-            "type": p["type"],
-            "description": p["description"]
-        }
-        if "trait" in p:
-            new_p["label"] = p["trait"]
-        elif "motivation" in p:
-            new_p["label"] = p["motivation"]
-        elif "domain" in p:
-            new_p["label"] = p["domain"]
-        else:
-            new_p["label"] = "N/A"
-
-        unified.append(new_p)
-
-    return unified
 
 def main():
     # parse args

@@ -8,7 +8,7 @@ from tqdm import tqdm
 from dotenv import load_dotenv
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_id", type=str, required=True, default="deepseek-ai/DeepSeek-V3")
+parser.add_argument("--model_id", type=str, required=True, default="deepseek-ai/DeepSeek-R1")
 parser.add_argument("--system_prompt_path", type=str, required=True)
 parser.add_argument("--user_prompt_path", type=str, required=True)
 parser.add_argument("--output_path", type=str, required=True)
@@ -33,7 +33,7 @@ def generate_text(model_id,system_prompt, user_prompt):
         frequency_penalty=0.0,
         presence_penalty=0.0,
         stop=["# END"],
-        max_tokens=100 
+        max_tokens=1000 
     )
     if not response.choices:
         raise ValueError(f"LLM returned an empty response.  Response object: {response}")
@@ -58,22 +58,26 @@ if __name__ == "__main__":
     with open(user_prompt_path, "r") as f:
         user_prompt_list = f.readlines()
     
-    time.sleep(50)
-    
     generated_data = []
     total_iterations = len(sys_prompt_list) * len(user_prompt_list)
     with tqdm(total=total_iterations, desc="Generating responses") as pbar:
         for sys_prompt in sys_prompt_list:
             for user_prompt in user_prompt_list:
                 answer = generate_text(model_id=model_id, system_prompt=sys_prompt, user_prompt=user_prompt)
-                generated_data.append({
+                current_data = {
                     "system_prompt": sys_prompt,
                     "user_prompt": user_prompt,
                     "answer": answer
-                })
+                }
+                generated_data.append(current_data)
+                
+                # Save after each generation
+                with open(output_path, "w") as f:
+                    json.dump(generated_data, f, indent=4)
+                
                 pbar.update(1)
-                print(answer)
                 time.sleep(50)
 
+    # Final save is redundant but kept for clarity
     with open(output_path, "w") as f:
         json.dump(generated_data, f, indent=4)
