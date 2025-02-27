@@ -68,7 +68,8 @@ def main():
     input_files = {
         'baseline': [
             ('./results/baseline_and_scenario/b_sc_add_goal.json', './results/baseline_and_scenario/b_sc_add_goal_labeled.json'),
-            ('./results/scenario_new_goals/scenario_new_goals.json', './results/scenario_new_goals/b_sc_labeled.json')
+            ('./results/scenario_new_goals/scenario_new_goals.json', './results/scenario_new_goals/b_sc_labeled.json'),
+            ('./results/baseline_new_goals/baseline_new_goals.json', './results/baseline_new_goals/baseline_new_goals_labeled.json')
         ],
         'persona': [
             ('./results/persona_goal/b_p_add_goal.json', './results/persona_goal/b_p_add_goal_labeled.json')
