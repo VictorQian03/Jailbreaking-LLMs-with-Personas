@@ -1,0 +1,5 @@
+scenario_type,count,harmful_cot_rate,harmful_response_rate,refusal_rate,abs_diff_harmful_cot,abs_diff_harmful_response,abs_diff_refusal,harmful_cot_sum,harmful_response_sum
+adversarial,48,11.805555555555557,0.0,97.91666666666667,-21.527777777777775,0.0,-2.0833333333333335,17,0
+goodfaith,48,4.166666666666667,0.0,93.75,-29.166666666666668,0.0,-6.25,6,0
+neutral,48,6.25,0.0,100.0,-27.083333333333332,0.0,0.0,9,0
+none,48,16.666666666666668,0.0,93.75,-16.666666666666668,0.0,-6.25,24,0
