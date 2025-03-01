@@ -1,5 +1,5 @@
-export EXPERIMENT_NAME="scenario_output"
-export SYSTEM_PROMPT_PATH="data/scenario_dataset/raw_scenario_dataset/scenarios_raw.txt"
+export EXPERIMENT_NAME="baseline_and_scenario"
+export SYSTEM_PROMPT_PATH="data/scenario_dataset/raw_scenario_dataset/baseline_scenarios_raw.txt"
 export USER_PROMPT_PATH="data/goal_dataset/raw_goal_dataset/raw_goals.txt"
 export MODEL_ID="deepseek-ai/DeepSeek-R1"
 export SAVE="results/$EXPERIMENT_NAME/"
