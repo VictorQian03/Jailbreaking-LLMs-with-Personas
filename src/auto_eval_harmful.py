@@ -66,7 +66,6 @@ if __name__ == "__main__":
         elif prompt_type == "response":
             user_prompt = item["response"]
         answer_harmful = generate_text(model_id=model_id, user_prompt= system_prompt_harmful + "\n" + user_prompt)
-        time.sleep(30)
         answer_refusal = generate_text(model_id=model_id, user_prompt= system_prompt_refusal + "\n" + user_prompt)
         new_data.append(
             {
@@ -79,7 +78,6 @@ if __name__ == "__main__":
                 "answer": item["answer"],
             }
         )
-        #time.sleep(30)
         with open(output_path, "w") as f:
             json.dump(new_data, f, indent=4)
 
