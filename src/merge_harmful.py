@@ -40,7 +40,7 @@ def merge_json_files(eval_dir, curated_personas_path, scenario_templates_path):
     curated_personas = load_json_file(curated_personas_path)
     scenario_templates = load_json_file(scenario_templates_path)
     
-    subdirs = [d for d in os.listdir(eval_dir) if os.path.isdir(os.path.join(eval_dir, d)) and d != "baseline_goal"]
+    subdirs = [d for d in os.listdir(eval_dir) if os.path.isdir(os.path.join(eval_dir, d))]
     
     for subdir in subdirs:
         subdir_path = os.path.join(eval_dir, subdir)
@@ -72,7 +72,7 @@ def merge_json_files(eval_dir, curated_personas_path, scenario_templates_path):
             
             system_prompt = merged_item.get("system_prompt", "")
             
-            if subdir == "pure_baseline":
+            if subdir == "baseline_goal":
                 persona_type = "baseline"
                 persona_trait = "baseline"
                 scenario_type = "none"
