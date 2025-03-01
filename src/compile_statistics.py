@@ -34,7 +34,7 @@ def compile_statistics(eval_dir):
         'refusal_count': 0
     }))))
 
-    subdirs = [d for d in os.listdir(eval_dir) if os.path.isdir(os.path.join(eval_dir, d)) and d != "baseline_goal"]
+    subdirs = [d for d in os.listdir(eval_dir) if os.path.isdir(os.path.join(eval_dir, d))]
 
     for subdir in subdirs:
         subdir_path = os.path.join(eval_dir, subdir)
@@ -182,7 +182,7 @@ def validate_merged_files(eval_dir):
     """
     problematic_files = []
 
-    subdirs = [d for d in os.listdir(eval_dir) if os.path.isdir(os.path.join(eval_dir, d)) and d != "baseline_goal"]
+    subdirs = [d for d in os.listdir(eval_dir) if os.path.isdir(os.path.join(eval_dir, d))]
 
     for subdir in subdirs:
         subdir_path = os.path.join(eval_dir, subdir)

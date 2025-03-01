@@ -79,7 +79,7 @@ if __name__ == "__main__":
                 "answer": item["answer"],
             }
         )
-        time.sleep(30)
+        #time.sleep(30)
         with open(output_path, "w") as f:
             json.dump(new_data, f, indent=4)
 
