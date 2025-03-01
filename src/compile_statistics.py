@@ -171,6 +171,9 @@ def generate_aggregations(df):
     agg_persona_scenario = df.groupby(['persona_type', 'scenario_type']).agg(agg_funcs).reset_index()
     aggregated_dfs['by_persona_scenario'] = agg_persona_scenario
 
+    agg_trait_scenario = df.groupby(['persona_trait', 'scenario_type']).agg(agg_funcs).reset_index()
+    aggregated_dfs['by_trait_scenario'] = agg_trait_scenario
+
     agg_prompt = df.groupby('user_prompt').agg(agg_funcs).reset_index()
     aggregated_dfs['by_prompt'] = agg_prompt
 
