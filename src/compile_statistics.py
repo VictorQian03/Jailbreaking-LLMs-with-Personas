@@ -196,15 +196,17 @@ def validate_merged_files(eval_dir):
                 merged_data = json.load(merged_file)
 
             for i, entry in enumerate(merged_data[:5]):  
-                cot_flag = entry.get('harmful_completion_flag_cot')
-                response_flag = entry.get('harmful_completion_flag_response')
-                refusal_flag = entry.get('refusal_flag')
-
-                if (cot_flag and (not isinstance(cot_flag, int) or not 0 <= cot_flag <= 3)) or \
-                   (response_flag and (not isinstance(response_flag, int) or not 0 <= response_flag <= 3)) or \
-                   (refusal_flag and (not isinstance(refusal_flag, int) or not 0 <= refusal_flag <=1)):
+                try:
+                    cot_flag = int(entry.get('harmful_completion_flag_cot', 0))
+                    response_flag = int(entry.get('harmful_completion_flag_response', 0))
+                    refusal_flag = int(entry.get('refusal_flag', 0))
+                except (ValueError, TypeError):
                     problematic_files.append(f"{merged_file_path} (has malformed flag values)")
-                    break 
+                    break
+
+                if not (0 <= cot_flag <= 3 and 0 <= response_flag <= 3 and 0 <= refusal_flag <= 1):
+                    problematic_files.append(f"{merged_file_path} (has malformed flag values)")
+                    break
 
         except Exception as e:
             problematic_files.append(f"{merged_file_path} (Error: {str(e)})")
