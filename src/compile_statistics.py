@@ -217,8 +217,8 @@ def validate_merged_files(eval_dir):
     return problematic_files
 
 def main():
-    eval_directory = "eval"
-    output_directory = "statistics"
+    eval_directory = "qwen_eval"
+    output_directory = "qwen_statistics"
 
     print("Validating merged files...")
     problematic_files = validate_merged_files(eval_directory)
