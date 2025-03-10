@@ -8,7 +8,7 @@ from tqdm import tqdm
 from dotenv import load_dotenv
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_id", type=str, required=True, default="deepseek-ai/DeepSeek-R1")
+parser.add_argument("--model_id", type=str, required=True, default="Qwen/QwQ-32B-Preview")
 parser.add_argument("--input_path", type=str, required=True)
 parser.add_argument("--output_path", type=str, required=True)
 parser.add_argument("--prompt_type", type=str, required=True, help="it should be either cot or response")

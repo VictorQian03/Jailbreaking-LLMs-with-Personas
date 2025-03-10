@@ -93,7 +93,7 @@ def merge_json_files(eval_dir, curated_personas_path, scenario_templates_path):
         print(f"Successfully merged files in {subdir_path}")
 
 if __name__ == "__main__":
-    eval_directory = "eval"
+    eval_directory = "qwen_eval"
     curated_personas_path = "data/persona_dataset/curated_personas/curated_personas.json"
     scenario_templates_path = "src/scenario_templates.json"
     
